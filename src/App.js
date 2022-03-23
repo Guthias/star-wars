@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import getPlanets from './services/api';
+import React from 'react';
+
+import PlanetsProvider from './context/Planets';
 import './App.css';
 
 function App() {
-  const [planetList, updatePlanetList] = useState([]);
-
-  useEffect(() => {
-    const fetchPlanets = async () => {
-      const data = await getPlanets();
-      updatePlanetList(data);
-    };
-
-    fetchPlanets();
-  }, [updatePlanetList]);
-
   return (
-    <span>Hello, App!</span>
+    <PlanetsProvider>
+      <span>Hello, App!</span>
+    </PlanetsProvider>
   );
 }
 
