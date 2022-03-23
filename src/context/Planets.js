@@ -1,3 +1,4 @@
+import { node } from 'prop-types';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import getPlanets from '../services/api';
 
@@ -5,7 +6,7 @@ const PlanetsContext = createContext();
 
 export default function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState();
-
+  console.log(children);
   useEffect(() => {
     const fetchPlanets = async () => {
       const data = await getPlanets();
@@ -26,3 +27,7 @@ export function usePlanets() {
   const [planets, setPlanets] = useContext();
   return [planets, setPlanets];
 }
+
+PlanetsProvider.propTypes = {
+  children: node.isRequired,
+};
