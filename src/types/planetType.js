@@ -1,6 +1,6 @@
-import { arrayOf, string } from 'prop-types';
+import { arrayOf, string, shape } from 'prop-types';
 
-const planetType = {
+const planetType = shape({
   name: string.isRequired,
   rotation_period: string.isRequired,
   orbital_period: string.isRequired,
@@ -15,6 +15,6 @@ const planetType = {
   created: string.isRequired,
   edited: string.isRequired,
   url: string.isRequired,
-};
+});
 
 export default planetType;
