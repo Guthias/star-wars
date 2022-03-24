@@ -39,4 +39,6 @@ export default function TableRow({ rowData }) {
   );
 }
 
-TableRow.propTypes = planetType;
+TableRow.propTypes = {
+  rowData: planetType.isRequired,
+};

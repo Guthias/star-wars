@@ -1,9 +1,14 @@
 import React from 'react';
-import { usePlanets } from '../../context/Planets';
+import { useFilters, usePlanets } from '../../context/PlanetsProvider';
 import TableRow from './TableRow';
 
 export default function PlanetsTable() {
   const { planets } = usePlanets();
+  const {
+    filters: {
+      filterByName: { name: nameFilter },
+    },
+  } = useFilters();
 
   return (
     <div>
@@ -26,9 +31,11 @@ export default function PlanetsTable() {
           </tr>
         </thead>
         <tbody>
-          { planets && planets.map((planet) => (
-            <TableRow key={ planet.name } rowData={ planet } />
-          ))}
+          {planets
+            && planets
+              .filter((planet) => planet.name.toLowerCase()
+                .includes(nameFilter.toLowerCase()))
+              .map((planet) => <TableRow key={ planet.name } rowData={ planet } />)}
         </tbody>
       </table>
     </div>
