@@ -6,7 +6,7 @@ const PlanetsContext = createContext();
 
 export default function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState();
-  console.log(children);
+
   useEffect(() => {
     const fetchPlanets = async () => {
       const data = await getPlanets();
@@ -24,8 +24,8 @@ export default function PlanetsProvider({ children }) {
 }
 
 export function usePlanets() {
-  const [planets, setPlanets] = useContext();
-  return [planets, setPlanets];
+  const { planets, setPlanets } = useContext(PlanetsContext);
+  return { planets, setPlanets };
 }
 
 PlanetsProvider.propTypes = {
