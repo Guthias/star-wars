@@ -14,6 +14,7 @@ export default function TableRow({ rowData }) {
     population,
     films,
     created,
+    edited,
     url,
   } = rowData;
 
@@ -34,6 +35,7 @@ export default function TableRow({ rowData }) {
         </ul>
       </td>
       <td>{ created }</td>
+      <td>{ edited }</td>
       <td>{ url }</td>
     </tr>
   );

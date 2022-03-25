@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { PlanetsContext } from '../../context/PlanetsProvider';
+import NumericFilter from './NumericFilter';
 
 export default function TableFilters() {
   const { dispatch } = useContext(PlanetsContext);
@@ -19,6 +20,8 @@ export default function TableFilters() {
           }) }
         />
       </label>
+
+      <NumericFilter />
     </div>
   );
 }
