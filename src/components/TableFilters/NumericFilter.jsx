@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { usePlanets } from '../../context/PlanetsProvider';
+import React, { useContext, useState } from 'react';
+import { PlanetsContext, usePlanets } from '../../context/PlanetsProvider';
 
 export default function NumericFilter() {
   // Getting keys with numeric Values
@@ -14,12 +14,24 @@ export default function NumericFilter() {
     value: '',
   };
 
+  const { dispatch } = useContext(PlanetsContext);
+
   const [filterValues, setFilterValues] = useState(INITIAL_STATE);
 
   const changeFilters = ({ target }) => {
     setFilterValues({
       ...filterValues,
       [target.name]: target.value,
+    });
+  };
+
+  const saveFilterValues = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: 'add_new_numeric_filter',
+      payload: {
+        ...filterValues,
+      },
     });
   };
 
@@ -66,7 +78,13 @@ export default function NumericFilter() {
         />
       </label>
 
-      <button type="submit" data-testid="button-filter">Filtrar</button>
+      <button
+        type="submit"
+        data-testid="button-filter"
+        onClick={ saveFilterValues }
+      >
+        Filtrar
+      </button>
     </div>
   );
 }
