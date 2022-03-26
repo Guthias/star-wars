@@ -9,9 +9,9 @@ export default function NumericFilter() {
     : [];
 
   const INITIAL_STATE = {
-    column: '',
-    comparsion: '',
-    value: '',
+    column: 'population',
+    comparsion: 'maior que',
+    value: '0',
   };
 
   const { dispatch } = useContext(PlanetsContext);
@@ -43,6 +43,7 @@ export default function NumericFilter() {
           id="column-filter"
           data-testid="column-filter"
           name="column"
+          value={ filterValues.column }
           onChange={ changeFilters }
         >
           {
@@ -55,24 +56,27 @@ export default function NumericFilter() {
       </label>
 
       <label htmlFor="comparison-filter">
-        <span>Coluna</span>
+        <span>Comparação</span>
         <select
           id="comparison-filter"
           data-testid="comparison-filter"
           name="comparsion"
+          value={ filterValues.comparison }
           onChange={ changeFilters }
         >
-          <option value="menor que">menor que</option>
           <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>
         </select>
       </label>
 
       <label htmlFor="value-filter">
-        <span>Coluna</span>
+        <span>Valor</span>
         <input
-          data-testid="value-fiter"
+          id="value-filter"
+          data-testid="value-filter"
           name="value"
+          value={ filterValues.value }
           type="number"
           onChange={ changeFilters }
         />

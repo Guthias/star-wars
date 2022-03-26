@@ -42,8 +42,8 @@ export default function PlanetsTable() {
                 for (let i = 0; i < filterByNumericValues.length; i += 1) {
                   const { column, comparsion, value } = filterByNumericValues[i];
                   switch (comparsion) {
-                  case 'menor que': validValue = planet[column] < value; break;
-                  case 'maior que': validValue = planet[column] > value; break;
+                  case 'menor que': validValue = planet[column] <= value; break;
+                  case 'maior que': validValue = planet[column] >= value; break;
                   case 'igual a': validValue = planet[column] === value; break;
                   default: throw new Error('Invalid comparsion value');
                   }
