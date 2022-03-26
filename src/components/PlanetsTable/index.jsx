@@ -7,6 +7,7 @@ export default function PlanetsTable() {
   const {
     filters: {
       filterByName: { name: nameFilter },
+      filterByNumericValues,
     },
   } = useFilters();
 
@@ -35,6 +36,21 @@ export default function PlanetsTable() {
             && planets
               .filter((planet) => planet.name.toLowerCase()
                 .includes(nameFilter.toLowerCase()))
+              .filter((planet) => {
+                let validValue = true;
+
+                for (let i = 0; i < filterByNumericValues.length; i += 1) {
+                  const { column, comparsion, value } = filterByNumericValues[i];
+                  switch (comparsion) {
+                  case 'menor que': validValue = planet[column] < value; break;
+                  case 'maior que': validValue = planet[column] > value; break;
+                  case 'igual a': validValue = planet[column] === value; break;
+                  default: throw new Error('Invalid comparsion value');
+                  }
+                  if (!validValue) break;
+                }
+                return validValue;
+              })
               .map((planet) => <TableRow key={ planet.name } rowData={ planet } />)}
         </tbody>
       </table>
