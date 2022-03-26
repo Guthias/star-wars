@@ -5,7 +5,7 @@ export default function NumericFilter() {
   // Getting keys with numeric Values
   const { planets } = usePlanets();
   const numberKeys = planets
-    ? Object.keys(planets[0]).filter((key) => !Number.isNaN(+planets[0][key]))
+    ? Object.keys(planets[0]).filter((key) => !Number.isNaN(+planets[0][key])).reverse()
     : [];
 
   const INITIAL_STATE = {
