@@ -20,6 +20,11 @@ const filterReducer = (state, { type, payload }) => {
       filterByNumericValues: state.filterByNumericValues
         .filter(({ column }) => column !== payload.column),
     };
+  case 'remove_all_numeric_filters':
+    return {
+      ...state,
+      filterByNumericValues: [],
+    };
   default: return state;
   }
 };

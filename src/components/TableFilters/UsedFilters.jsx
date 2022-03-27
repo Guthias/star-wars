@@ -12,15 +12,29 @@ export default function UsedFilters() {
     });
   };
 
+  const removeAllFilters = () => {
+    dispatch({
+      type: 'remove_all_numeric_filters',
+    });
+  };
+
   return (
     <div>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ removeAllFilters }
+      >
+        Remove all Filters
+      </button>
+
       {
         filterByNumericValues.map(({ column, comparsion, value }) => (
-          <div key={ column }>
+          <div key={ column } data-testid="filter">
             {`${column} ${comparsion} ${value}`}
             <button
               type="button"
-              title="Remover filtro"
+              title="Remove filter"
               onClick={ () => removeFilter(column) }
             >
               X
