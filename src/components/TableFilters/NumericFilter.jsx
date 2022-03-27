@@ -1,11 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { PlanetsContext, usePlanets } from '../../context/PlanetsProvider';
+import { PlanetsContext, usePlanets, useFilters } from '../../context/PlanetsProvider';
 
 export default function NumericFilter() {
   // Getting keys with numeric Values
   const { planets } = usePlanets();
+  const { filters: { filterByNumericValues } } = useFilters();
+  const filteredKeys = filterByNumericValues.map(({ column }) => column);
+
   const numberKeys = planets
-    ? Object.keys(planets[0]).filter((key) => !Number.isNaN(+planets[0][key])).reverse()
+    ? Object.keys(planets[0])
+      .filter((key) => !Number.isNaN(+planets[0][key]))
+      .reverse()
     : [];
 
   const INITIAL_STATE = {
@@ -47,10 +52,10 @@ export default function NumericFilter() {
           onChange={ changeFilters }
         >
           {
-            numberKeys.map((numericKey) => (
+            numberKeys.map((numericKey) => (!filteredKeys.includes(numericKey) && (
               <option key={ numericKey } value={ numericKey }>
                 { numericKey }
-              </option>))
+              </option>)))
           }
         </select>
       </label>
