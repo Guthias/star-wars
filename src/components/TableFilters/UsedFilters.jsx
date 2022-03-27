@@ -1,8 +1,17 @@
-import React from 'react';
-import { useFilters } from '../../context/PlanetsProvider';
+import React, { useContext } from 'react';
+import { PlanetsContext, useFilters } from '../../context/PlanetsProvider';
 
 export default function UsedFilters() {
   const { filters: { filterByNumericValues } } = useFilters();
+  const { dispatch } = useContext(PlanetsContext);
+
+  const removeFilter = (filterColumn) => {
+    dispatch({
+      type: 'remove_numeric_filter',
+      payload: { column: filterColumn },
+    });
+  };
+
   return (
     <div>
       {
@@ -12,6 +21,7 @@ export default function UsedFilters() {
             <button
               type="button"
               title="Remover filtro"
+              onClick={ () => removeFilter(column) }
             >
               X
             </button>
