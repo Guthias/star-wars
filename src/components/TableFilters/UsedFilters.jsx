@@ -4,7 +4,7 @@ import useFilters from '../../hooks/useFilters';
 export default function UsedFilters() {
   const {
     filters: { filterByNumericValues },
-    removeAllFilters, removeFilter,
+    removeAllNumericFilter, removeNumericFilter,
   } = useFilters();
 
   return (
@@ -12,7 +12,7 @@ export default function UsedFilters() {
       <button
         type="button"
         data-testid="button-remove-filters"
-        onClick={ removeAllFilters }
+        onClick={ removeAllNumericFilter }
       >
         Remove all Filters
       </button>
@@ -24,7 +24,7 @@ export default function UsedFilters() {
             <button
               type="button"
               title="Remove filter"
-              onClick={ () => removeFilter(column) }
+              onClick={ () => removeNumericFilter(column) }
             >
               X
             </button>
