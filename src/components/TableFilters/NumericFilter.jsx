@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { PlanetsContext, usePlanets, useFilters } from '../../context/PlanetsProvider';
+import React, { useState } from 'react';
+import { usePlanets } from '../../context/PlanetsProvider';
+import useFilters from '../../hooks/useFilters';
 
 export default function NumericFilter() {
   // Getting keys with numeric Values
   const { planets } = usePlanets();
-  const { filters: { filterByNumericValues } } = useFilters();
+  const { filters: { filterByNumericValues }, saveNumericFilter } = useFilters();
   const filteredKeys = filterByNumericValues.map(({ column }) => column);
 
   const numberKeys = planets
@@ -19,8 +20,6 @@ export default function NumericFilter() {
     value: '0',
   };
 
-  const { dispatch } = useContext(PlanetsContext);
-
   const [filterValues, setFilterValues] = useState(INITIAL_STATE);
 
   const changeFilters = ({ target }) => {
@@ -32,12 +31,7 @@ export default function NumericFilter() {
 
   const saveFilterValues = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'add_new_numeric_filter',
-      payload: {
-        ...filterValues,
-      },
-    });
+    saveNumericFilter(...filterValues);
   };
 
   return (

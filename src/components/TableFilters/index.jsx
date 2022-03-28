@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
-import { PlanetsContext } from '../../context/PlanetsProvider';
+import React from 'react';
 import NumericFilter from './NumericFilter';
 import UsedFilters from './UsedFilters';
+import useFilters from '../../hooks/useFilters';
 
 export default function TableFilters() {
-  const { dispatch } = useContext(PlanetsContext);
-
+  const { changeFilterName } = useFilters();
   return (
     <div>
       <label htmlFor="name-filter">
@@ -13,12 +12,7 @@ export default function TableFilters() {
         <input
           id="name-filter"
           data-testid="name-filter"
-          onChange={ ({ target }) => dispatch({
-            type: 'change_name',
-            payload: {
-              name: target.value,
-            },
-          }) }
+          onChange={ ({ target }) => changeFilterName(target.value) }
         />
       </label>
 

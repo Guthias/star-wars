@@ -37,11 +37,6 @@ export function usePlanets() {
   return { planets, setPlanets };
 }
 
-export function useFilters() {
-  const { filters, dispatch } = useContext(PlanetsContext);
-  return { filters, dispatch };
-}
-
 PlanetsProvider.propTypes = {
   children: node.isRequired,
 };

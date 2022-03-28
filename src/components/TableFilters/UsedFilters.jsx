@@ -1,22 +1,11 @@
-import React, { useContext } from 'react';
-import { PlanetsContext, useFilters } from '../../context/PlanetsProvider';
+import React from 'react';
+import useFilters from '../../hooks/useFilters';
 
 export default function UsedFilters() {
-  const { filters: { filterByNumericValues } } = useFilters();
-  const { dispatch } = useContext(PlanetsContext);
-
-  const removeFilter = (filterColumn) => {
-    dispatch({
-      type: 'remove_numeric_filter',
-      payload: { column: filterColumn },
-    });
-  };
-
-  const removeAllFilters = () => {
-    dispatch({
-      type: 'remove_all_numeric_filters',
-    });
-  };
+  const {
+    filters: { filterByNumericValues },
+    removeAllFilters, removeFilter,
+  } = useFilters();
 
   return (
     <div>

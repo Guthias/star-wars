@@ -1,5 +1,6 @@
 import React from 'react';
-import { useFilters, usePlanets } from '../../context/PlanetsProvider';
+import { usePlanets } from '../../context/PlanetsProvider';
+import useFilters from '../../hooks/useFilters';
 import TableRow from './TableRow';
 
 export default function PlanetsTable() {

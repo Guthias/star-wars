@@ -1,12 +1,19 @@
+import {
+  FILTER_CHANGE_NAME,
+  FILTER_ADD_NUMERIC,
+  FILTER_REMOVE_ALL_NUMERIC,
+  FILTER_REMOVE_NUMERIC,
+} from '../types/actionTypes';
+
 const filterReducer = (state, { type, payload }) => {
   switch (type) {
-  case 'change_name':
+  case FILTER_CHANGE_NAME:
     return {
       ...state,
       filterByName: {
         name: payload.name,
       } };
-  case 'add_new_numeric_filter':
+  case FILTER_ADD_NUMERIC:
     return {
       ...state,
       filterByNumericValues: [
@@ -14,13 +21,13 @@ const filterReducer = (state, { type, payload }) => {
         payload,
       ],
     };
-  case 'remove_numeric_filter':
+  case FILTER_REMOVE_NUMERIC:
     return {
       ...state,
       filterByNumericValues: state.filterByNumericValues
         .filter(({ column }) => column !== payload.column),
     };
-  case 'remove_all_numeric_filters':
+  case FILTER_REMOVE_ALL_NUMERIC:
     return {
       ...state,
       filterByNumericValues: [],
