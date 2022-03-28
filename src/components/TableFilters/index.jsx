@@ -2,6 +2,7 @@ import React from 'react';
 import NumericFilter from './NumericFilter';
 import UsedFilters from './UsedFilters';
 import useFilters from '../../hooks/useFilters';
+import SortArea from './SortArea';
 
 export default function TableFilters() {
   const { changeFilterName } = useFilters();
@@ -17,6 +18,7 @@ export default function TableFilters() {
       </label>
 
       <NumericFilter />
+      <SortArea />
       <UsedFilters />
     </div>
   );
