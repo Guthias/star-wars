@@ -31,7 +31,7 @@ export default function NumericFilter() {
 
   const saveFilterValues = (event) => {
     event.preventDefault();
-    saveNumericFilter(...filterValues);
+    saveNumericFilter(filterValues);
   };
 
   return (
