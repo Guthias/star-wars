@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { usePlanets } from '../../context/PlanetsProvider';
+import { usePlanets, useOrder } from '../../context/PlanetsProvider';
 
 export default function SortArea() {
   const { planets } = usePlanets();
+  const { setOrderValues } = useOrder();
 
   const numberKeys = planets
     ? Object.keys(planets[0])
@@ -19,6 +20,11 @@ export default function SortArea() {
     setSort({ ...sort,
       [target.name]: target.value,
     });
+  };
+
+  const submitSort = (event) => {
+    event.preventDefault();
+    setOrderValues(sort);
   };
 
   return (
@@ -65,6 +71,7 @@ export default function SortArea() {
 
         <button
           type="submit"
+          onClick={ submitSort }
           data-testid="column-sort-button"
         >
           Sort
