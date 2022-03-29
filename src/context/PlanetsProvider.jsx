@@ -13,8 +13,14 @@ export default function PlanetsProvider({ children }) {
     filterByNumericValues: [],
   };
 
+  const INITIAL_STATE_ORDER_VALUES = {
+    column: 'population',
+    sort: 'ASC',
+  };
+
   const [planets, setPlanets] = useState();
   const [filters, dispatch] = useReducer(filterReducer, INITIAL_FILTER);
+  const [orderValues, setOrderValues] = useState(INITIAL_STATE_ORDER_VALUES);
 
   useEffect(() => {
     const fetchPlanets = async () => {
@@ -26,7 +32,11 @@ export default function PlanetsProvider({ children }) {
   }, [setPlanets]);
 
   return (
-    <PlanetsContext.Provider value={ { planets, setPlanets, filters, dispatch } }>
+    <PlanetsContext.Provider
+      value={
+        { planets, setPlanets, filters, dispatch, orderValues, setOrderValues }
+      }
+    >
       { children }
     </PlanetsContext.Provider>
   );
@@ -35,6 +45,11 @@ export default function PlanetsProvider({ children }) {
 export function usePlanets() {
   const { planets, setPlanets } = useContext(PlanetsContext);
   return { planets, setPlanets };
+}
+
+export function useOrder() {
+  const { orderValues, setOrderValues } = useContext(PlanetsContext);
+  return { orderValues, setOrderValues };
 }
 
 PlanetsProvider.propTypes = {
