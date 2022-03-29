@@ -1,10 +1,11 @@
 import React from 'react';
-import { usePlanets } from '../../context/PlanetsProvider';
+import { useOrder, usePlanets } from '../../context/PlanetsProvider';
 import useFilters from '../../hooks/useFilters';
 import TableRow from './TableRow';
 
 export default function PlanetsTable() {
   const { planets } = usePlanets();
+  const { orderValues } = useOrder();
   const {
     filters: {
       filterByName: { name: nameFilter },
@@ -51,6 +52,16 @@ export default function PlanetsTable() {
                   if (!validValue) break;
                 }
                 return validValue;
+              })
+              .sort((a, b) => {
+                if (orderValues.sort === 'ASC') {
+                  return +a[orderValues.column] - +b[orderValues.column];
+                }
+
+                if (orderValues.sort === 'DESC') {
+                  return +b[orderValues.column] - +a[orderValues.column];
+                }
+                return a.name.localeCompare(b.name);
               })
               .map((planet) => <TableRow key={ planet.name } rowData={ planet } />)}
         </tbody>

@@ -14,8 +14,8 @@ export default function PlanetsProvider({ children }) {
   };
 
   const INITIAL_STATE_ORDER_VALUES = {
-    column: 'population',
-    sort: 'ASC',
+    column: '',
+    sort: '',
   };
 
   const [planets, setPlanets] = useState();
