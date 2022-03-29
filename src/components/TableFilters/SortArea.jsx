@@ -52,7 +52,7 @@ export default function SortArea() {
             name="sort"
             value="ASC"
             onChange={ handleInputChange }
-            data-testid="column-sort-input-desc"
+            data-testid="column-sort-input-asc"
           />
           ASC
         </label>
